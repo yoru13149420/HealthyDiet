@@ -4,9 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>前後端分離網站</title>
+    <!-- jQuery 跟bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+    integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+    integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+    <!-- 自己的 -->
     <script src="./src/js/main.js" defer></script>
     <link rel="stylesheet" href="./src/css/style.css">
 </head>
@@ -31,7 +39,7 @@
             <h3>功能選單</h3>
             <button id="closeSidebar" class="btn btn-sm btn-outline-secondary">&times;</button>
             <ul class="list-group">
-                <li class="list-group-item" data-content="feature1.html">功能一</li>
+                <li class="list-group-item" data-content="map.html">地圖</li>
                 <li class="list-group-item" data-content="feature2.html">功能二</li>
                 <li class="list-group-item" data-content="feature3.html">功能三</li>
             </ul>
@@ -42,31 +50,5 @@
         
     </div>
     
-
-    <script>
-        const $userName = $("#userName");
-        const $logoutBtn = $("#logoutBtn");
-        const $loginBtn = $("#loginBtn");
-        $.ajax({
-            url: '../backend/check_session.php',
-            method: 'GET',
-            success: function(response) {
-                if (response.logged_in) {
-                    $userName.html(`歡迎，${response.username}`);
-                    $userName.show();
-                    $logoutBtn.show();
-                    $loginBtn.hide();
-
-                }
-            }
-        });
-
-        $logoutBtn.on("click", ()=>{
-            $.get('../backend/logout.php', function() {
-                    alert("已登出");
-                    window.location.reload();
-            });
-        })
-    </script>
 </body>
 </html>

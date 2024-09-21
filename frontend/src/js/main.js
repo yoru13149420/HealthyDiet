@@ -47,4 +47,31 @@ $(document).ready(function() {
     });
     // --------處理sidebar問題 END----------
 
+    // --------處理登入 START----------
+    const $userName = $("#userName");
+    const $logoutBtn = $("#logoutBtn");
+    const $loginBtn = $("#loginBtn");
+    $.ajax({
+        url: '../backend/check_session.php',
+        method: 'GET',
+        success: function(response) {
+            if (response.logged_in) {
+                $userName.html(`歡迎，${response.username}`);
+                $userName.show();
+                $logoutBtn.show();
+                $loginBtn.hide();
+
+            }
+        }
+    });
+
+    $logoutBtn.on("click", ()=>{
+        $.get('../backend/logout.php', function() {
+                alert("已登出");
+                window.location.reload();
+        });
+    })
+
+    // --------處理登入 EMD----------
+
 });

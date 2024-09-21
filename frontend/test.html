@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 和 jQuery 網站布局</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #f8f9fa;
+            transition: 0.3s;
+            z-index: 1000;
+        }
+        #sidebar.active {
+            left: 0;
+        }
+        #content {
+            transition: 0.3s;
+        }
+        #content.active {
+            margin-left: 250px;
+        }
+        #closeSidebar {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <button id="sidebarToggle" class="btn btn-outline-secondary me-2">
+                &#9776; 選單
+            </button>
+            <a class="navbar-brand" href="#">網站名稱</a>
+        </div>
+    </nav>
+
+    <div id="sidebar">
+        <div class="p-4">
+            <h3>功能選單</h3>
+            <button id="closeSidebar" class="btn btn-sm btn-outline-secondary">&times;</button>
+            <ul class="list-unstyled mt-3">
+                <li><a href="#" class="text-decoration-none">功能 1</a></li>
+                <li><a href="#" class="text-decoration-none">功能 2</a></li>
+                <li><a href="#" class="text-decoration-none">功能 3</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content" class="container-fluid mt-4">
+        <h1>內容區域</h1>
+        <p>這裡是您的主要內容。</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function toggleSidebar() {
+                $("#sidebar").toggleClass("active");
+                $("#content").toggleClass("active");
+            }
+
+            $("#sidebarToggle").click(function(e) {
+                e.preventDefault();
+                toggleSidebar();
+            });
+
+            $("#closeSidebar").click(function(e) {
+                e.preventDefault();
+                toggleSidebar();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+
+  <!-- 通用調整的js -->
+  <script>
+      $(document).ready(function () {
+        //在載入與變換寬度的時候重新計算內容高度
+        $("#map").css(
+          "height",
+          $(window).height() - parseFloat($(".navbar").css("height"))
+        );
+
+        $(window).resize(function () {
+          $("#map").css(
+            "height",
+            $(window).height() - parseFloat($(".navbar").css("height"))
+          );
+        });
+      });
+  </script>
+
+
+
+<div id="map"></div>
+
+<script src="./src/js/mapHelper.js"></script>
+<script src="./src/js/map.js"></script>
