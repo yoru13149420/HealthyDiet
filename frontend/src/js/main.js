@@ -16,6 +16,7 @@ $(document).ready(function() {
     
     // 加載內容
     function loadContent(file) {
+        if(!file) return;
         file = "src/view/" + file;
         $('#content-area').load(file, function(response, status, xhr) {
             if (status == "error") {

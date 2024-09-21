@@ -16,6 +16,12 @@
             <button id="sidebarToggle" class="btn btn-outline-secondary me-2">
                 &#9776; 選單
             </button>
+            <div id="user-item">
+                <a id="userName" style="display: none;" class="nav-item" data-content="userInfo.html"></a>
+                <a id="logoutBtn" style="display: none;" class="nav-item">登出</a>
+                <a id="loginBtn" class="nav-item" data-content="login.html">登入</a>
+            </div>
+            
             <a class="navbar-brand nav-item" data-content="home.html">網站名稱</a>
         </div>
     </nav>
@@ -36,5 +42,31 @@
         
     </div>
     
+
+    <script>
+        const $userName = $("#userName");
+        const $logoutBtn = $("#logoutBtn");
+        const $loginBtn = $("#loginBtn");
+        $.ajax({
+            url: '../backend/check_session.php',
+            method: 'GET',
+            success: function(response) {
+                if (response.logged_in) {
+                    $userName.html(`歡迎，${response.username}`);
+                    $userName.show();
+                    $logoutBtn.show();
+                    $loginBtn.hide();
+
+                }
+            }
+        });
+
+        $logoutBtn.on("click", ()=>{
+            $.get('../backend/logout.php', function() {
+                    alert("已登出");
+                    window.location.reload();
+            });
+        })
+    </script>
 </body>
 </html>
